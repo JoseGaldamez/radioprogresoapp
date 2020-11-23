@@ -107,8 +107,12 @@ List<Widget> _news(List elementos, context) {
             children: [
               FlatButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => NoticiaPage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => NoticiaPage(
+                                url: element["urlnew"],
+                              )));
                 },
                 child: Row(
                   children: [
