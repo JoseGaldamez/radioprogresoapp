@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:async';
 import 'package:flutter_radio/flutter_radio.dart';
-import 'package:wakelock/wakelock.dart';
 
 class BotonFlotante extends StatefulWidget {
   BotonFlotante({Key key}) : super(key: key);
@@ -26,20 +24,10 @@ class _BotonFlotanteState extends State<BotonFlotante> {
     await FlutterRadio.isPlaying();
     setState(() {
       isPlaying = !isPlaying;
-      Wakelock.toggle(enable: isPlaying);
     });
 
     print("isPlaying");
     print(isPlaying);
-
-    Fluttertoast.showToast(
-        msg: "Cargando...",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 3,
-        backgroundColor: Colors.black54,
-        textColor: Colors.white,
-        fontSize: 16.0);
   }
 
   @override

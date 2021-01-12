@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 2.1.0+2
+version: 3.0.0+5
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -23,17 +23,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
+  provider: ^4.3.2+3
+  flutter_html: ^1.0.0
   http:
   webview_flutter:
-  fluttertoast:
   flutter_radio:
-  wakelock:
   share: ^0.6.5+4
+  path_provider: ^1.6.10
+  audio_session: ^0.0.10
+  just_audio: ^0.6.3
+  flutter_tts: ^0.8.5
+  rxdart: "0.25.0"
+  # rxdart: ">= 0.24.1 < 0.26.0"
+  audio_service:
+    path: ../audio_service_rp/
 
 
 dev_dependencies:
@@ -62,6 +68,7 @@ flutter:
     - img/logo_principal.png
     - img/logorp.png
     - img/loading.gif
+    - img/np.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

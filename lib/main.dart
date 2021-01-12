@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:radioprogresoappoficial/components/BotonFlotante.dart';
-import 'package:radioprogresoappoficial/pages/noticias.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:radioprogresoappoficial/pages/home.dart';
+import 'package:radioprogresoappoficial/services/dataNP.dart';
+import 'package:radioprogresoappoficial/services/dataNews.dart';
+import 'package:radioprogresoappoficial/services/dataNotiNada.dart';
 
 void main() {
-  runApp(MyApp());
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => DataNewsPost()),
+      ChangeNotifierProvider(create: (_) => DataNuestraPalabra()),
+      ChangeNotifierProvider(create: (_) => DataNotiNada()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,56 +23,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Radio Progreso HN',
+      color: Colors.white,
       theme: ThemeData(
         primaryColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Radio Progreso HN'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          appBar: AppBar(
-            title: Image.asset("img/logo_principal.png"),
-            centerTitle: false,
-            actions: [
-              SizedBox(
-                width: 35.0,
-              ),
-              IconButton(
-                  icon: Icon(
-                    Icons.info,
-                    color: Colors.black26,
-                  ),
-                  onPressed: () {
-                    Fluttertoast.showToast(
-                        msg:
-                            "Aplicación creada por el equipo de Multimedia de Radio Progreso\nVersión 2.0.1",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 10,
-                        backgroundColor: Colors.black87,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
-                  })
-            ],
-          ),
-          body: ListadoNoticias(),
-          floatingActionButton: BotonFlotante()),
+      //home: MyHomePage(title: 'Radio Progreso HN'),
+      home: HomePage(),
     );
   }
 }

@@ -22,7 +22,6 @@ class _ListadoNoticiasState extends State<ListadoNoticias> {
         await http.get("https://radioprogreso-a03a6.web.app/news/news.json");
 
     if (respuesta.statusCode == 200) {
-      print(respuesta.body.toString());
       String body = utf8.decode(respuesta.bodyBytes);
       return jsonDecode(body);
     } else {
