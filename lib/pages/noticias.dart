@@ -18,8 +18,9 @@ class _ListadoNoticiasState extends State<ListadoNoticias> {
   Future<List<dynamic>> futureNews;
 
   Future<List<dynamic>> recibirNews() async {
+    Uri url = Uri.parse("https://radioprogreso-a03a6.web.app/news/news.json");
     final respuesta =
-        await http.get("https://radioprogreso-a03a6.web.app/news/news.json");
+        await http.get(url);
 
     if (respuesta.statusCode == 200) {
       String body = utf8.decode(respuesta.bodyBytes);

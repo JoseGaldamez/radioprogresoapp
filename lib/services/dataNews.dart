@@ -14,8 +14,8 @@ class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
   List<NewsModel> get listNews => _listsNews;
 
   void getNews() async {
-    var respuesta = await http.get(
-        "https://www.radioprogresohn.net/wp-json/wp/v2/posts?_embed&categories=71");
+    Uri url = Uri.parse("https://www.radioprogresohn.net/wp-json/wp/v2/posts?_embed&categories=71");
+    var respuesta = await http.get(url);
 
     if (respuesta.statusCode == 200) {
       var jsonRespuesta = jsonDecode(respuesta.body);

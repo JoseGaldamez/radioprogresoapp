@@ -11,8 +11,9 @@ class DataNotiNada with ChangeNotifier, DiagnosticableTreeMixin {
   NotiNada get datann => _datann;
 
   void getNN() async {
+    Uri url = Uri.parse("https://radioprogreso-a03a6.firebaseapp.com/news/notinada.json");
     var respuesta = await http
-        .get("https://radioprogreso-a03a6.firebaseapp.com/news/notinada.json");
+        .get(url);
 
     if (respuesta.statusCode == 200) {
       var jsonRespuesta = jsonDecode(respuesta.body);

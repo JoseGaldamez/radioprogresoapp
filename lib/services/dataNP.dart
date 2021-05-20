@@ -12,8 +12,8 @@ class DataNuestraPalabra with ChangeNotifier, DiagnosticableTreeMixin {
   NewsModel get datanp => _datanp;
 
   void getNP() async {
-    var respuesta = await http.get(
-        "https://www.radioprogresohn.net/wp-json/wp/v2/posts?_embed&categories=10&per_page=1");
+    Uri url = Uri.parse("https://www.radioprogresohn.net/wp-json/wp/v2/posts?_embed&categories=10&per_page=1");
+    var respuesta = await http.get(url);
 
     if (respuesta.statusCode == 200) {
       var jsonRespuesta = jsonDecode(respuesta.body);
