@@ -1,4 +1,5 @@
 import 'dart:async';
+//import 'dart:io' show Platform;
 import 'dart:math';
 
 import 'package:audio_service/audio_service.dart';
@@ -7,54 +8,68 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:just_audio/just_audio.dart';
+//import 'package:provider/provider.dart';
+//import 'package:radioprogresoappoficial/services/utilsService.dart';
 //import 'package:rxdart/rxdart.dart';
 
-class PlayerRadio extends StatelessWidget {
+class ReproductorAudio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: AudioServiceWidget(child: MainScreen()),
-    );
-  }
-}
+    return StreamBuilder<bool>(
+          stream: AudioService.runningStream,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState != ConnectionState.active) {
+              // Don't show anything until we've ascertained whether or not the
+              // service is running, since we want to show a different UI in
+              // each case.
+              return SizedBox();
+            }
+            final running = snapshot.data ?? false;
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                if (!running) ...[
+                  // UI to show when we're not running, i.e. a menu.
+                  Text("Escuchanos en vivo"),
+                  audioPlayerButton(),
+                ] else ...[
+                  Text("Reproduciendo..."),
+                  // Play/pause/stop buttons.
+                  StreamBuilder<bool>(
+                    stream: AudioService.playbackStateStream
+                        .map((state) => state.playing)
+                        .distinct(),
+                    builder: (context, snapshot) {
+                      final playing = snapshot.data ?? false;
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          if (playing) pauseButton() else playButton(),
+                          stopButton(),
+                        ],
+                      );
+                    },
+                  ),
+                  // Display the processing state.
+                  StreamBuilder<AudioProcessingState>(
+                    stream: AudioService.playbackStateStream
+                        .map((state) => state.processingState)
+                        .distinct(),
+                    builder: (context, snapshot) {
+                      final processingState =
+                          snapshot.data ?? AudioProcessingState.none;
 
-class MainScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: StreamBuilder<bool>(
-        stream: AudioService.runningStream,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.active) {
-            // Don't show anything until we've ascertained whether or not the
-            // service is running, since we want to show a different UI in
-            // each case.
-            return SizedBox();
-          }
-          final running = snapshot.data ?? false;
-          return Column(
-            children: [
-              if (!running) ...[
-                // UI to show when we're not running, i.e. a menu.
-                audioPlayerButton(),
-              ] else ...[
-                // UI to show when we're running, i.e. player state/controls.
-                // Queue display/controls.
-                // Play/pause/stop buttons.
-                StreamBuilder<bool>(
-                  stream: AudioService.playbackStateStream
-                      .map((state) => state.playing)
-                      .distinct(),
-                  builder: (context, snapshot) {
-                    //final playing = snapshot.data ?? false;
-                    return stopButton();
-                  },
-                ),
+                          if(describeEnum(processingState) != "ready"){
+                            return CircularProgressIndicator();
+                          } else {
+                            return Container();
+                          }
+                    },
+                  ),
+                ],
               ],
-            ],
-          );
-        },
-      ),
+            );
+          },
     );
   }
 
@@ -68,50 +83,49 @@ class MainScreen extends StatelessWidget {
 
   /// A stream reporting the combined state of the current queue and the current
   /// media item within that queue.
-  /* Stream<QueueState> get _queueStateStream =>
+ /*  Stream<QueueState> get _queueStateStream =>
       Rx.combineLatest2<List<MediaItem>, MediaItem, QueueState>(
           AudioService.queueStream,
           AudioService.currentMediaItemStream,
           (queue, mediaItem) => QueueState(queue, mediaItem)); */
 
-  InkWell audioPlayerButton() => startButton(
+  IconButton audioPlayerButton() => startButton(
         'AudioPlayer',
         () {
           AudioService.start(
             backgroundTaskEntrypoint: _audioPlayerTaskEntrypoint,
-            androidNotificationChannelName: 'Escuchando',
+            androidNotificationChannelName: 'Audio Service Demo',
             // Enable this if you want the Android service to exit the foreground state on pause.
-            androidStopForegroundOnPause: true,
+            //androidStopForegroundOnPause: true,
             androidNotificationColor: 0xFF2196f3,
-            androidNotificationIcon: 'mipmap/ic_launcher_foreground',
+            androidNotificationIcon: 'mipmap/ic_launcher',
             androidEnableQueue: true,
           );
         },
       );
 
-  InkWell textToSpeechButton() => startButton(
+  IconButton textToSpeechButton() => startButton(
         'TextToSpeech',
         () {
           AudioService.start(
             backgroundTaskEntrypoint: _textToSpeechTaskEntrypoint,
-            androidNotificationChannelName: 'Escuchando',
+            androidNotificationChannelName: 'Audio Service Demo',
             androidNotificationColor: 0xFF2196f3,
-            androidNotificationIcon: 'mipmap/ic_launcher_foreground',
+            androidNotificationIcon: 'mipmap/ic_launcher',
           );
         },
       );
 
-  InkWell startButton(String label, VoidCallback onPressed) => InkWell(
-        child: Icon(
-          Icons.play_arrow,
-          size: 40,
-        ),
-        onTap: onPressed,
+  IconButton startButton(String label, VoidCallback onPressed) =>
+      IconButton(
+        icon: Icon(Icons.play_arrow),
+        iconSize: 64.0,
+        onPressed: onPressed,
       );
 
   IconButton playButton() => IconButton(
         icon: Icon(Icons.play_arrow),
-        iconSize: 30.0,
+        iconSize: 64.0,
         onPressed: AudioService.play,
       );
 
@@ -121,12 +135,10 @@ class MainScreen extends StatelessWidget {
         onPressed: AudioService.pause,
       );
 
-  InkWell stopButton() => InkWell(
-        child: Icon(
-          Icons.stop,
-          size: 40,
-        ),
-        onTap: AudioService.stop,
+  IconButton stopButton() => IconButton(
+        icon: Icon(Icons.stop),
+        iconSize: 64.0,
+        onPressed: AudioService.stop,
       );
 }
 
@@ -151,8 +163,8 @@ class SeekBar extends StatefulWidget {
   final ValueChanged<Duration> onChangeEnd;
 
   SeekBar({
-    @required this.duration,
-    @required this.position,
+    this.duration,
+    this.position,
     this.onChanged,
     this.onChangeEnd,
   });
@@ -167,7 +179,7 @@ class _SeekBarState extends State<SeekBar> {
 
   @override
   Widget build(BuildContext context) {
-    final value = min(_dragValue ?? widget.position?.inMilliseconds?.toDouble(),
+    final value = min(_dragValue ?? widget.position.inMilliseconds.toDouble(),
         widget.duration.inMilliseconds.toDouble());
     if (_dragValue != null && !_dragging) {
       _dragValue = null;
@@ -294,6 +306,8 @@ class AudioPlayerTask extends BackgroundAudioTask {
         : AudioProcessingState.skippingToPrevious;
     // This jumps to the beginning of the queue item at newIndex.
     _player.seek(Duration.zero, index: newIndex);
+    // Demonstrate custom events.
+    AudioServiceBackground.sendCustomEvent('skip to $newIndex');
   }
 
   @override
@@ -400,10 +414,11 @@ class AudioPlayerTask extends BackgroundAudioTask {
 class MediaLibrary {
   final _items = <MediaItem>[
     MediaItem(
-      id: "https://streamingcwsradio30.com:7045/stream?type=http&nocache=102",
-      album: "Online",
+      // This can be any unique id, but we use the audio URL for convenience.
+      id: "https://streamingcwsradio30.com:7045/stream?type=http",
+      album: "En Vivo",
       title: "Radio Progreso",
-      artist: "En vivo",
+      artist: "Radio Progreso",
       duration: Duration(milliseconds: 5739820),
       artUri: "https://radioprogresohn.net/wp-content/uploads/2020/12/lg.jpg",
     ),

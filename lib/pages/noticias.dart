@@ -105,7 +105,7 @@ List<Widget> _news(List elementos, context) {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              FlatButton(
+              ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                       context,
@@ -124,7 +124,7 @@ List<Widget> _news(List elementos, context) {
                   ],
                 ),
               ),
-              FlatButton(
+              ElevatedButton(
                 onPressed: () {
                   final RenderBox box = context.findRenderObject();
                   Share.share(element["urlshare"],

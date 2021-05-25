@@ -42,12 +42,10 @@ class TextoInfoApp extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            color: Colors.white,
-            elevation: 0,
             child: Text(
               "Entiendo",
               style: TextStyle(color: Colors.blue, fontSize: 18),

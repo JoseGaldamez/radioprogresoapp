@@ -1,10 +1,11 @@
-import 'dart:convert';
+//import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:radioprogresoappoficial/models/news.dart';
 
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 
 class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
   int _count = 0;
@@ -14,6 +15,27 @@ class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
   List<NewsModel> get listNews => _listsNews;
 
   void getNews() async {
+    Query query =
+        FirebaseFirestore.instance.collection('posts');
+
+    await query.get().then((posts) => {
+      posts.docs.forEach((post) {
+        _listsNews.add(
+          NewsModel(post.data()["title"], post.data()["image"], post.data()["date"], post.data()["content"], post.data()["urlShare"], post.data()["excerpt"])
+        );
+      })
+    });
+
+    notifyListeners();
+
+    print(_listsNews);
+    
+  }
+
+
+
+
+  /* void getNews() async {
     Uri url = Uri.parse("https://www.radioprogresohn.net/wp-json/wp/v2/posts?_embed&categories=71");
     var respuesta = await http.get(url);
 
@@ -29,10 +51,11 @@ class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
             jsonRespuesta[i]["link"].toString(),
             jsonRespuesta[i]["excerpt"]["rendered"]));
       }
-    }
+    } 
 
     notifyListeners();
   }
+  */
 
   /// Makes `Counter` readable inside the devtools by listing all of its properties
   @override

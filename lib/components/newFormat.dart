@@ -1,5 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:radioprogresoappoficial/components/nuestra_palabra.dart';
 import 'package:radioprogresoappoficial/models/news.dart';
 import 'package:radioprogresoappoficial/pages/newDetails.dart';
 
@@ -26,8 +26,11 @@ class _NewFormatState extends State<NewFormat> {
           child: Container(
             child: Column(
               children: [
-                FadeInImage.assetNetwork(
-                    placeholder: "img/loading.gif", image: widget.nota.image),
+                /* FadeInImage.assetNetwork(
+                    placeholder: "img/loading.gif", image: widget.nota.image), */
+                CachedNetworkImage(
+                  placeholder:  (context, url) => new Image.asset("img/loading.gif"),
+                  imageUrl: widget.nota.image),
                 Container(
                   padding: EdgeInsets.only(top: 10, left: 10, right: 10),
                   child: Column(
@@ -43,7 +46,7 @@ class _NewFormatState extends State<NewFormat> {
                       Text(
                         widget.nota.descripcion
                                 .replaceAll("<p>", "")
-                                .substring(1, 120) +
+                                .substring(0, 120) +
                             "...",
                         style: TextStyle(color: Colors.grey),
                       )

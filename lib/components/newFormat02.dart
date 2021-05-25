@@ -49,7 +49,7 @@ class _NewFormat02State extends State<NewFormat02> {
                     child: Text(
                       widget.nota.descripcion
                               .replaceAll("<p>", "")
-                              .substring(1, 100) +
+                              .substring(0, 100) +
                           "...",
                       style: TextStyle(color: Colors.grey),
                     ),

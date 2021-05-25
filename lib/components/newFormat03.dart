@@ -15,6 +15,7 @@ class _NewsFormat03State extends State<NewsFormat03> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
             margin: EdgeInsets.all(10),

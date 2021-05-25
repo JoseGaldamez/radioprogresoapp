@@ -32,14 +32,16 @@ dependencies:
   webview_flutter:
   flutter_radio:
   share: ^0.6.5+4
-  path_provider: ^1.6.10
   audio_session: ^0.0.10
   just_audio: ^0.6.3
   flutter_tts: ^0.8.5
+  sliding_up_panel: ^2.0.0+1
   rxdart: "0.25.0"
   # rxdart: ">= 0.24.1 < 0.26.0"
   audio_service:
-    path: ../audio_service_rp/
+  firebase_core:
+  cloud_firestore: ^0.16.0
+  cached_network_image: ^2.5.0
 
 
 dev_dependencies:
