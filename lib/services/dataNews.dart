@@ -15,6 +15,10 @@ class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
   List<NewsModel> get listNews => _listsNews;
 
   void getNews() async {
+    if (this._listsNews.length > 0 ) {
+     this._listsNews = [];
+     notifyListeners();
+    }
     Query query =
         FirebaseFirestore.instance.collection('posts');
 
@@ -26,12 +30,11 @@ class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
       })
     });
 
-    notifyListeners();
+    this._listsNews = this._listsNews.reversed.toList();
 
-    print(_listsNews);
+    notifyListeners();
     
   }
-
 
 
 

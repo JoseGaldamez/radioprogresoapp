@@ -12,7 +12,16 @@ import 'package:just_audio/just_audio.dart';
 //import 'package:radioprogresoappoficial/services/utilsService.dart';
 //import 'package:rxdart/rxdart.dart';
 
-class ReproductorAudio extends StatelessWidget {
+class ReproductorAudio extends StatefulWidget {
+  
+  @override
+  _ReproductorAudioState createState() => _ReproductorAudioState();
+}
+
+class _ReproductorAudioState extends State<ReproductorAudio> {
+  bool stoping = false;
+  bool reproduciendo = false;
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<bool>(
@@ -26,14 +35,16 @@ class ReproductorAudio extends StatelessWidget {
             }
             final running = snapshot.data ?? false;
             return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric( horizontal: MediaQuery.of(context).size.width * 0.2, vertical: MediaQuery.of(context).size.width * 0.05),
+                    child: reproduciendo ? Image.asset("img/animation/AnimacionPlaying.gif") : Image.asset("img/animation/AnimacionStoped.png") ),
                 if (!running) ...[
                   // UI to show when we're not running, i.e. a menu.
-                  Text("Escuchanos en vivo"),
                   audioPlayerButton(),
                 ] else ...[
-                  Text("Reproduciendo..."),
                   // Play/pause/stop buttons.
                   StreamBuilder<bool>(
                     stream: AudioService.playbackStateStream
@@ -45,7 +56,7 @@ class ReproductorAudio extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           if (playing) pauseButton() else playButton(),
-                          stopButton(),
+                          //stopButton(),
                         ],
                       );
                     },
@@ -60,13 +71,24 @@ class ReproductorAudio extends StatelessWidget {
                           snapshot.data ?? AudioProcessingState.none;
 
                           if(describeEnum(processingState) != "ready"){
-                            return CircularProgressIndicator();
+                            return LinearProgressIndicator();
                           } else {
                             return Container();
                           }
                     },
                   ),
                 ],
+                Container(
+                  padding: EdgeInsets.only(top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(icon: Icon(Icons.call), iconSize: 40, color: Colors.grey[800], onPressed: (){} ),
+                      IconButton(icon: Icon(Icons.message), iconSize: 40, color: Colors.grey[800], onPressed: (){} ),
+                      IconButton(icon: Icon(Icons.call), iconSize: 40, color: Colors.grey[800], onPressed: (){} ),
+                    ],
+                  )
+                )
               ],
             );
           },
@@ -101,6 +123,10 @@ class ReproductorAudio extends StatelessWidget {
             androidNotificationIcon: 'mipmap/ic_launcher',
             androidEnableQueue: true,
           );
+
+          setState(() {
+            reproduciendo = true;
+          });
         },
       );
 
@@ -126,13 +152,23 @@ class ReproductorAudio extends StatelessWidget {
   IconButton playButton() => IconButton(
         icon: Icon(Icons.play_arrow),
         iconSize: 64.0,
-        onPressed: AudioService.play,
+        onPressed: (){
+          AudioService.play();
+          setState(() {
+            reproduciendo = true;
+          });
+        }
       );
 
   IconButton pauseButton() => IconButton(
         icon: Icon(Icons.pause),
         iconSize: 64.0,
-        onPressed: AudioService.pause,
+        onPressed: (){
+          AudioService.pause();
+          setState(() {
+            reproduciendo = false;
+          });
+        }
       );
 
   IconButton stopButton() => IconButton(

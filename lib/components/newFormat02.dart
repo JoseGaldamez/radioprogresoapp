@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:radioprogresoappoficial/models/news.dart';
 import 'package:radioprogresoappoficial/pages/newDetails.dart';
@@ -27,11 +28,10 @@ class _NewFormat02State extends State<NewFormat02> {
             Container(
               width: 100,
               height: 100,
-              child: FadeInImage.assetNetwork(
-                placeholder: "img/loading.gif",
-                image: widget.nota.image,
+              child: CachedNetworkImage(
                 fit: BoxFit.cover,
-              ),
+                  placeholder:  (context, url) => new Image.asset("img/loading.gif"),
+                  imageUrl: widget.nota.image),
             ),
             Expanded(
               child: Column(

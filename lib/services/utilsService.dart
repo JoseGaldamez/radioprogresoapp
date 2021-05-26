@@ -13,7 +13,6 @@ class UtilsService with ChangeNotifier, DiagnosticableTreeMixin {
     _iconArrow = Icons.keyboard_arrow_up_rounded;
     notifyListeners();
   }
-
   
 
   /// Makes `Counter` readable inside the devtools by listing all of its properties

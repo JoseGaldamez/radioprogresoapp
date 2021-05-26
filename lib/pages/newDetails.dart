@@ -1,8 +1,12 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/html_parser.dart';
 import 'package:flutter_html/style.dart';
 import 'package:radioprogresoappoficial/models/news.dart';
 import 'package:share/share.dart';
+import 'package:html/dom.dart' as dom;
 
 class NewsDetails extends StatefulWidget {
   final NewsModel nota;
@@ -113,6 +117,21 @@ class _NewsDetailsState extends State<NewsDetails> {
       ),
     );
   }
+
+Map<String, CustomRender> getCustomRender() {
+  var customRender = HashMap<String, CustomRender>();
+  // load img sources from assets
+  // e.g. <img src='image01.png'/>
+  customRender["img"] = getImageCustomRender; 
+  return customRender;
+}
+
+Widget getImageCustomRender(RenderContext context,
+    Widget parsedChild,
+    Map<String, String> attributes,
+    dom.Element element) {
+  return new Image.asset("img/loading.gif");
+}
 
   String _mes(mes) {
     String estemes = "";

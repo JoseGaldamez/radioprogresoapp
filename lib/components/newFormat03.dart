@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:radioprogresoappoficial/models/news.dart';
 import 'package:radioprogresoappoficial/pages/newDetails.dart';
@@ -32,12 +33,10 @@ class _NewsFormat03State extends State<NewsFormat03> {
                     Container(
                       width: double.infinity,
                       height: 120,
-                      child: FadeInImage.assetNetwork(
-                        placeholder: "img/loading.gif",
-                        image: widget.nota01.image,
-                        fit: BoxFit.cover,
+                      child: CachedNetworkImage(
+                        placeholder:  (context, url) => new Image.asset("img/loading.gif"),
+                        imageUrl: widget.nota01.image),
                       ),
-                    ),
                     Container(
                       padding: EdgeInsets.only(top: 10),
                       child: Text(
@@ -63,11 +62,9 @@ class _NewsFormat03State extends State<NewsFormat03> {
                     Container(
                       width: double.infinity,
                       height: 120,
-                      child: FadeInImage.assetNetwork(
-                        placeholder: "img/loading.gif",
-                        image: widget.nota02.image,
-                        fit: BoxFit.cover,
-                      ),
+                      child: CachedNetworkImage(
+                  placeholder:  (context, url) => new Image.asset("img/loading.gif"),
+                  imageUrl: widget.nota02.image),
                     ),
                     Container(
                       padding: EdgeInsets.only(top: 10),

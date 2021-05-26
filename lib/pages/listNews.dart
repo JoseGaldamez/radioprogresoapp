@@ -110,8 +110,13 @@ class _ListNewsPageState extends State<ListNewsPage> {
                                   context.watch<DataNotiNada>().datann.url);
                             } */
 
+                            if (index < context.watch<DataNewsPost>().listNews.length - 1) { 
                             return NewFormat02(
                                 context.watch<DataNewsPost>().listNews[index]);
+                            }
+                             
+                            return SizedBox(height: 200.0,);
+                            
                           }),
                     ),
                 )
