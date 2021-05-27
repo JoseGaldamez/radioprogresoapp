@@ -4,16 +4,25 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:radioprogresoappoficial/models/news.dart';
+import 'package:radioprogresoappoficial/models/swiperImages.dart';
 
 //import 'package:http/http.dart' as http;
 
 class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
-  int _count = 0;
-  List<NewsModel> _listsNews = [];
 
-  int get count => _count;
+  List<NewsModel> _listsNews = [];
   List<NewsModel> get listNews => _listsNews;
 
+
+  List<ImageSwiper> _listSwiper = [];
+  List<ImageSwiper> get listSwiper => _listSwiper;
+
+
+
+
+
+
+// Obteniendo Noticias desde Firebase
   void getNews() async {
     if (this._listsNews.length > 0 ) {
      this._listsNews = [];
@@ -36,6 +45,25 @@ class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
     
   }
 
+
+
+
+
+
+// Obteniendo Imagenes para el carrucel de publicidad
+
+Future<void> getSwiper() async {
+Query query =
+        FirebaseFirestore.instance.collection('banners');
+
+    await query.get().then((posts) => {
+      posts.docs.forEach((post) {
+        _listSwiper.add(
+          ImageSwiper(post.data()["url"], post.data()["title"], post.data()["image"])
+        );
+      })
+    });
+}
 
 
   /* void getNews() async {

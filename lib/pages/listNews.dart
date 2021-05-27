@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:radioprogresoappoficial/components/newFormat.dart';
 import 'package:radioprogresoappoficial/components/newFormat02.dart';
 import 'package:radioprogresoappoficial/components/newFormat03.dart';
+import 'package:radioprogresoappoficial/components/v2/swiperPublicidad.dart';
 //import 'package:radioprogresoappoficial/components/notinadaVideo.dart';
 //import 'package:radioprogresoappoficial/components/nuestra_palabra.dart';
 //import 'package:radioprogresoappoficial/services/dataNP.dart';
@@ -23,10 +24,15 @@ class _ListNewsPageState extends State<ListNewsPage> {
   void initState() {
     super.initState();
     _getNews();
+    _getBanners();
   }
 
   Future<void> _getNews() async {
     context.read<DataNewsPost>().getNews();
+  }
+
+  Future<void> _getBanners() async {
+    context.read<DataNewsPost>().getSwiper();
   }
 
   @override
@@ -58,24 +64,32 @@ class _ListNewsPageState extends State<ListNewsPage> {
                                       .listNews[index]),
                                   /* NuestraPalabra(
                                       context.watch<DataNuestraPalabra>().datanp) */
+                                  Container(
+                                    child: context.watch<DataNewsPost>().listSwiper.length == 0 ? Container() : PublicidadSwiper( context.watch<DataNewsPost>().listSwiper ),
+                                  )
                                 ],
                               );
                             }
 
                             if (index == 1) {
-                              return Container(
-                                padding: EdgeInsets.only(bottom: 25),
-                                width: MediaQuery.of(context).size.width,
-                                child: NewsFormat03(
-                                    context.watch<DataNewsPost>().listNews[index],
-                                    context
-                                        .watch<DataNewsPost>()
-                                        .listNews[index + 1]),
+                              return Column(
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.only(bottom: 25),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: NewsFormat03(
+                                        context.watch<DataNewsPost>().listNews[index],
+                                        context
+                                            .watch<DataNewsPost>()
+                                            .listNews[index + 1]),
+                                  ),
+                                ],
                               );
                             }
 
                             if (index == 2) {
-                              return Container();
+                              return Container(
+                              );
                             }
 
                             if (index == 3) {
@@ -104,11 +118,16 @@ class _ListNewsPageState extends State<ListNewsPage> {
                             if (index == 4) {
                               return Container();
                             }
-
-                            /* if (index == 6) {
+/* 
+                            if (index == 6) {
                               return NotiNadaVideo(
                                   context.watch<DataNotiNada>().datann.url);
                             } */
+
+                            if (index == 6) {
+                              return Container(
+                              );
+                            }
 
                             if (index < context.watch<DataNewsPost>().listNews.length - 1) { 
                             return NewFormat02(
