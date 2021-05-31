@@ -31,7 +31,8 @@ class PublicidadSwiper extends StatelessWidget {
             itemBuilder: (BuildContext context, int index){
               return GestureDetector(
                 onTap: (){
-                  if (_listBanners[index].url == "") {
+                  print(_listBanners[index].url);
+                  if (_listBanners[index].url != "") {
                     launchUrl(_listBanners[index].url);
                   }
                 },

@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:radioprogresoappoficial/pages/v2/tuvozymivozPage.dart';
 //import 'package:provider/provider.dart';
 //import 'package:radioprogresoappoficial/services/utilsService.dart';
 //import 'package:rxdart/rxdart.dart';
@@ -85,7 +86,12 @@ class _ReproductorAudioState extends State<ReproductorAudio> {
                     children: [
                       IconButton(icon: Icon(Icons.call), iconSize: 40, color: Colors.grey[800], onPressed: (){} ),
                       IconButton(icon: Icon(Icons.message), iconSize: 40, color: Colors.grey[800], onPressed: (){} ),
-                      IconButton(icon: Icon(Icons.call), iconSize: 40, color: Colors.grey[800], onPressed: (){} ),
+                      GestureDetector(onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TuVozPage() ) );
+                      }, child: Container(
+                        width: 60,
+                        height: 100,
+                        child: Image.asset("img/tu-voz.png", fit: BoxFit.fitWidth,)),)
                     ],
                   )
                 )

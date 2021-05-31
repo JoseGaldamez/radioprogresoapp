@@ -76,6 +76,8 @@ flutter:
     - img/animation/AnimacionPlaying.gif
     - img/animation/AnimacionStoping.gif
     - img/animation/AnimacionStoped.png
+    - img/tu-voz.png
+    - img/tu-voz-y-mi-voz.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
