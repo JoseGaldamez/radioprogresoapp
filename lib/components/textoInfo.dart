@@ -35,27 +35,36 @@ class TextoInfoApp extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(10),
             child: Text(
-              "Un equipo diverso de mujeres y hombres que trabajan por la construcción de una sociedad justa, equitativa y soberana, a través de valores inspirados en el reino de Dios y la espiritualidad ignaciana, soñamos con una Honduras ejerciendo soberanía, que respete los derechos humanos y que promueva relaciones de horizontalidad.",
+              "Un equipo diverso de mujeres y hombres que trabajan por la construcción de una sociedad justa, equitativa y soberana, a través de valores inspirados en el reino de Dios y la espiritualidad ignaciana.",
               textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w300),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Text(
+              "Soñamos con una Honduras ejerciendo soberanía, que respete los derechos humanos y que promueva relaciones de horizontalidad.",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w300),
             ),
           ),
           SizedBox(
             height: 10,
           ),
-          ElevatedButton(
+          TextButton(
             onPressed: () {
               Navigator.pop(context);
             },
             child: Text(
               "Entiendo",
-              style: TextStyle(color: Colors.blue, fontSize: 18),
+              style: TextStyle(color: Colors.blue, fontSize: 16),
             ),
           ),
           SizedBox(
             height: 5,
           ),
           Text(
-            "V3.0.0",
+            "V4.0.1",
             style: TextStyle(color: Colors.grey[300], fontSize: 12),
           ),
           Text(

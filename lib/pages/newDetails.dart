@@ -40,7 +40,7 @@ class _NewsDetailsState extends State<NewsDetails> {
               onTap: () {
                 final RenderBox box = context.findRenderObject();
                 Share.share(
-                    "Recomiendo está nota en Radio Progreso: " +
+                    "Recomiendo está nota de Radio Progreso: " +
                         widget.nota.url,
                     subject: widget.nota.title,
                     sharePositionOrigin:
@@ -107,13 +107,16 @@ class _NewsDetailsState extends State<NewsDetails> {
                     "i" : Style(
                       display: Display.BLOCK,
                         width: 0,
-                        height: 0
+                        height: 0,
+                        color: Colors.white,
+                        fontSize: FontSize.percent(0),
                     ),
                     "p": Style(
                         textAlign: TextAlign.justify,
                         fontSize: FontSize(19),
                         color: Colors.grey[800],
-                        padding: EdgeInsets.symmetric(horizontal: 10))
+                        padding: EdgeInsets.symmetric(horizontal: 10)),
+                    ".total_only": Style(color: Colors.white)
                   },
                 ),
               ],

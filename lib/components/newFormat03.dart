@@ -34,8 +34,8 @@ class _NewsFormat03State extends State<NewsFormat03> {
                       width: double.infinity,
                       height: 120,
                       child: CachedNetworkImage(
-                        placeholder:  (context, url) => new Image.asset("img/loading.gif"),
-                        imageUrl: widget.nota01.image),
+                        placeholder:  (context, url) => new Image.asset("img/placeholder.gif"),
+                        imageUrl: widget.nota01.image, fit: BoxFit.fill),
                       ),
                     Container(
                       padding: EdgeInsets.only(top: 10),
@@ -63,7 +63,7 @@ class _NewsFormat03State extends State<NewsFormat03> {
                       width: double.infinity,
                       height: 120,
                       child: CachedNetworkImage(
-                  placeholder:  (context, url) => new Image.asset("img/loading.gif"),
+                  placeholder:  (context, url) => new Image.asset("img/placeholder.gif"),
                   imageUrl: widget.nota02.image),
                     ),
                     Container(

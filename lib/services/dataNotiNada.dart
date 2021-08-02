@@ -12,6 +12,7 @@ class DataNotiNada with ChangeNotifier, DiagnosticableTreeMixin {
   NotiNada get datann => _datann;
 
   String urlVideoNotiNada = "";
+  String urlVideoSemana = "";
 
   void getVideoNotiNadaFromFirebase() async {
 
@@ -20,6 +21,8 @@ class DataNotiNada with ChangeNotifier, DiagnosticableTreeMixin {
       videos.docs.forEach((video) {
         if (video.id == "NotiNada") {
           urlVideoNotiNada = video.data()['url'];
+        } else {
+          urlVideoSemana = video.data()['url'];
         }
       })
     });

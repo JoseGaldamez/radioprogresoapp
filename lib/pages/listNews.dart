@@ -43,6 +43,11 @@ class _ListNewsPageState extends State<ListNewsPage> {
     context.read< DataNotiNada>().getVideoNotiNadaFromFirebase();
   }
 
+  Future<void> _getNewData() async {
+    _getNews();
+    _getNotiNada();
+    _getBanners();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,7 +64,7 @@ class _ListNewsPageState extends State<ListNewsPage> {
                   )
                 : Expanded(
                       child: RefreshIndicator(
-                        onRefresh: _getNews,
+                        onRefresh: _getNewData,
                         child:ListView.builder(
                           itemCount:
                               context.watch<DataNewsPost>().listNews.length,
@@ -134,7 +139,7 @@ class _ListNewsPageState extends State<ListNewsPage> {
 
                             if (index == 6) {
                               return Container(
-                                child: VideoReproductor( context.watch<DataNotiNada>().urlVideoNotiNada ),
+                                child: VideoReproductor( context.watch<DataNotiNada>().urlVideoSemana ),
                               );
                             }
 
@@ -142,7 +147,7 @@ class _ListNewsPageState extends State<ListNewsPage> {
                             return NewFormat02(
                                 context.watch<DataNewsPost>().listNews[index]);
                             } else if (index > 10) {
-                              return Container(child: Padding( padding: EdgeInsets.only(bottom: 200 ), child: VideoReproductor( "gfdveE8roaY" )));
+                              return Container(child: Padding( padding: EdgeInsets.only(bottom: 200 ), child: VideoReproductor( context.watch<DataNotiNada>().urlVideoNotiNada )));
                             }
                              
                             return SizedBox(height: 200.0,);

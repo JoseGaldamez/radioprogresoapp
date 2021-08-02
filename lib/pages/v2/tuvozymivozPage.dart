@@ -9,22 +9,26 @@ class TuVozPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-            child: Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            child: ListView(
               children: [
-                _backIconButton(context),
-                _titlePage(),
-                _texto01(),
-                _imageLogoTuVoz(context),
-                _texto02(),
-                _buttonActions(),
-                _moreInformation()
+                Container(
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    _backIconButton(context),
+                    _titlePage(),
+                    _texto01(),
+                    _imageLogoTuVoz(context),
+                    _texto02(),
+                    _buttonActions(),
+                    _moreInformation()
+                  ],
+                ),
+          ),
               ],
             ),
-          ),
         ),
     );
   }
@@ -123,7 +127,7 @@ class TuVozPage extends StatelessWidget {
   Container _backIconButton(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.only(top:0),
             width: double.infinity,
             child: IconButton(
             icon: Icon(Icons.arrow_back_ios),

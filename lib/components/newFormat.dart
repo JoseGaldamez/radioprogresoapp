@@ -29,7 +29,7 @@ class _NewFormatState extends State<NewFormat> {
                 /* FadeInImage.assetNetwork(
                     placeholder: "img/loading.gif", image: widget.nota.image), */
                 CachedNetworkImage(
-                  placeholder:  (context, url) => new Image.asset("img/loading.gif"),
+                  placeholder:  (context, url) => new Image.asset("img/placeholder.gif"),
                   imageUrl: widget.nota.image),
                 Container(
                   padding: EdgeInsets.only(top: 10, left: 10, right: 10),

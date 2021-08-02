@@ -30,7 +30,7 @@ class _NewFormat02State extends State<NewFormat02> {
               height: 100,
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
-                  placeholder:  (context, url) => new Image.asset("img/loading.gif"),
+                  placeholder:  (context, url) => new Image.asset("img/placeholder.gif"),
                   imageUrl: widget.nota.image),
             ),
             Expanded(
@@ -49,7 +49,7 @@ class _NewFormat02State extends State<NewFormat02> {
                     child: Text(
                       widget.nota.descripcion
                               .replaceAll("<p>", "")
-                              .substring(0, 100) +
+                              .substring(0, 50) +
                           "...",
                       style: TextStyle(color: Colors.grey),
                     ),

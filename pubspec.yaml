@@ -78,6 +78,8 @@ flutter:
     - img/animation/AnimacionStoped.png
     - img/tu-voz.png
     - img/tu-voz-y-mi-voz.png
+    - img/placeholder.gif
+    - img/whatsapp.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

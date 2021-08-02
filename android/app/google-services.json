@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "970362926725",
+    "firebase_url": "https://radioprogreso-a03a6.firebaseio.com",
+    "project_id": "radioprogreso-a03a6",
+    "storage_bucket": "radioprogreso-a03a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970362926725:android:d1e50a9ea83c4438b6dbec",
+        "android_client_info": {
+          "package_name": "com.codigocorrecto.firebaseapptest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970362926725-1a6o1oquvd3o8npkjb72mopmslitgiev.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codigocorrecto.firebaseapptest",
+            "certificate_hash": "716d0c2f5289a24beb4452ba3eada91d25855ebb"
+          }
+        },
+        {
+          "client_id": "970362926725-2gq4n8k815oat0q0fc3qc1mv15iam11j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv0JeJpfFSCP7x3THvKdO8GHiucufs0IQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970362926725-2gq4n8k815oat0q0fc3qc1mv15iam11j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "970362926725-0bu3ji3rms00pkqc6f9omur4n22381c9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "net.radioprogresohn.appoficial"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970362926725:android:1ff1ce4fafc55e06b6dbec",
+        "android_client_info": {
+          "package_name": "net.radioprogresohn.radioprogresoappoficial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970362926725-nrjr4pn5t9giu70thfdqis5e2cpjq9lg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.radioprogresohn.radioprogresoappoficial",
+            "certificate_hash": "c6f353fda1e4c77a2bf1347f1187e5b27f30d3c7"
+          }
+        },
+        {
+          "client_id": "970362926725-2gq4n8k815oat0q0fc3qc1mv15iam11j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv0JeJpfFSCP7x3THvKdO8GHiucufs0IQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970362926725-2gq4n8k815oat0q0fc3qc1mv15iam11j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "970362926725-0bu3ji3rms00pkqc6f9omur4n22381c9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "net.radioprogresohn.appoficial"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,7 +8,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:just_audio/just_audio.dart';
+// import 'package:radioprogresoappoficial/pages/v2/messagerPage.dart';
+import 'package:radioprogresoappoficial/pages/v2/optionsMessages.dart';
 import 'package:radioprogresoappoficial/pages/v2/tuvozymivozPage.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:provider/provider.dart';
 //import 'package:radioprogresoappoficial/services/utilsService.dart';
 //import 'package:rxdart/rxdart.dart';
@@ -25,6 +28,12 @@ class _ReproductorAudioState extends State<ReproductorAudio> {
 
   @override
   Widget build(BuildContext context) {
+
+
+      void _callPhone() async {
+        await canLaunch("tel:+50426479432") ? await launch("tel:+50426479432") : throw 'Could not launch call';
+      }
+
     return StreamBuilder<bool>(
           stream: AudioService.runningStream,
           builder: (context, snapshot) {
@@ -88,8 +97,10 @@ class _ReproductorAudioState extends State<ReproductorAudio> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      IconButton(icon: Icon(Icons.call), iconSize: 40, color: Colors.grey[800], onPressed: (){} ),
-                      IconButton(icon: Icon(Icons.message), iconSize: 40, color: Colors.grey[800], onPressed: (){} ),
+                      IconButton(icon: Icon(Icons.call), iconSize: 40, color: Colors.grey[800], onPressed: _callPhone ),
+                      IconButton(icon: Icon(Icons.message), iconSize: 40, color: Colors.grey[800], onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => OptionsMessages()));
+                      } ),
                       GestureDetector(onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context) => TuVozPage() ) );
                       }, child: Container(

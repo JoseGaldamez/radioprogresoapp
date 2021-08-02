@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:radioprogresoappoficial/components/textoInfo.dart';
 import 'package:radioprogresoappoficial/components/v2/reproductor.dart';
 import 'package:radioprogresoappoficial/pages/listNews.dart';
 //import 'package:radioprogresoappoficial/services/dataNews.dart';
@@ -63,6 +64,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(icon: Icon(Icons.info, color: Colors.grey,), onPressed: (){
+            showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        content: SingleChildScrollView(child: TextoInfoApp()),
+                      );
+                    });
+          } )
+        ],
         centerTitle: false,
         title: Container(
         width: MediaQuery.of(context).size.width * 0.70,
