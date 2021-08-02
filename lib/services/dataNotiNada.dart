@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,22 @@ import 'package:radioprogresoappoficial/models/notinada.dart';
 class DataNotiNada with ChangeNotifier, DiagnosticableTreeMixin {
   NotiNada _datann;
   NotiNada get datann => _datann;
+
+  String urlVideoNotiNada = "";
+
+  void getVideoNotiNadaFromFirebase() async {
+
+    Query query = FirebaseFirestore.instance.collection('videos');
+    await query.get().then((videos) => {
+      videos.docs.forEach((video) {
+        if (video.id == "NotiNada") {
+          urlVideoNotiNada = video.data()['url'];
+        }
+      })
+    });
+    
+    notifyListeners();
+  }
 
   void getNN() async {
     Uri url = Uri.parse("https://radioprogreso-a03a6.firebaseapp.com/news/notinada.json");

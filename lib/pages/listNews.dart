@@ -4,10 +4,12 @@ import 'package:radioprogresoappoficial/components/newFormat.dart';
 import 'package:radioprogresoappoficial/components/newFormat02.dart';
 import 'package:radioprogresoappoficial/components/newFormat03.dart';
 import 'package:radioprogresoappoficial/components/v2/swiperPublicidad.dart';
+import 'package:radioprogresoappoficial/components/v2/videoReproductor.dart';
 //import 'package:radioprogresoappoficial/components/notinadaVideo.dart';
 //import 'package:radioprogresoappoficial/components/nuestra_palabra.dart';
 //import 'package:radioprogresoappoficial/services/dataNP.dart';
 import 'package:radioprogresoappoficial/services/dataNews.dart';
+import 'package:radioprogresoappoficial/services/dataNotiNada.dart';
 //import 'package:radioprogresoappoficial/services/dataNotiNada.dart';
 
 class ListNewsPage extends StatefulWidget {
@@ -20,11 +22,13 @@ class ListNewsPage extends StatefulWidget {
 class _ListNewsPageState extends State<ListNewsPage> {
   bool loading = true;
 
+
   @override
   void initState() {
     super.initState();
     _getNews();
     _getBanners();
+    _getNotiNada();
   }
 
   Future<void> _getNews() async {
@@ -33,6 +37,10 @@ class _ListNewsPageState extends State<ListNewsPage> {
 
   Future<void> _getBanners() async {
     context.read<DataNewsPost>().getSwiper();
+  }
+
+  Future<void> _getNotiNada() async {
+    context.read< DataNotiNada>().getVideoNotiNadaFromFirebase();
   }
 
   @override
@@ -126,12 +134,15 @@ class _ListNewsPageState extends State<ListNewsPage> {
 
                             if (index == 6) {
                               return Container(
+                                child: VideoReproductor( context.watch<DataNotiNada>().urlVideoNotiNada ),
                               );
                             }
 
                             if (index < context.watch<DataNewsPost>().listNews.length - 1) { 
                             return NewFormat02(
                                 context.watch<DataNewsPost>().listNews[index]);
+                            } else if (index > 10) {
+                              return Container(child: Padding( padding: EdgeInsets.only(bottom: 200 ), child: VideoReproductor( "gfdveE8roaY" )));
                             }
                              
                             return SizedBox(height: 200.0,);

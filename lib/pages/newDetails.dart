@@ -100,9 +100,15 @@ class _NewsDetailsState extends State<NewsDetails> {
                         margin: EdgeInsets.all(0),
                         padding: EdgeInsets.all(0)),
                     "img": Style(
-                        width: double.infinity,
+                        //width: double.infinity,
+                        alignment: Alignment.center,
                         padding: EdgeInsets.all(0),
                         margin: EdgeInsets.all(0)),
+                    "i" : Style(
+                      display: Display.BLOCK,
+                        width: 0,
+                        height: 0
+                    ),
                     "p": Style(
                         textAlign: TextAlign.justify,
                         fontSize: FontSize(19),

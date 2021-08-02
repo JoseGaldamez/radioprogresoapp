@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   PanelController _pc1 = new PanelController();
   var currentProgram;
   String programName = "";
+  String urlVideoNotiNada = "";
 
   @override
   void initState() { 
@@ -34,6 +35,22 @@ class _HomePageState extends State<HomePage> {
          print(this.programName);
       });
      });
+  }
+
+
+  void getVideoNotiNadaFromFirebase() async {
+
+    Query query = FirebaseFirestore.instance.collection('videos');
+    await query.get().then((videos) => {
+      videos.docs.forEach((video) {
+        if (video.id == "NotiNada") {
+          setState(() {          
+            this.urlVideoNotiNada = video.data()['url'];
+          });
+        }
+      })
+    });
+  
   }
 
   @override
@@ -52,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         child: Image.asset("img/logo_principal.png")) ),
       body: SlidingUpPanel(
         controller: _pc1,
-        maxHeight: MediaQuery.of(context).size.height * 0.7,
+        maxHeight: MediaQuery.of(context).size.height * 0.75,
         minHeight: 110.0,
         onPanelOpened: (){
           context.read<UtilsService>().slidingOpened();
@@ -61,6 +78,7 @@ class _HomePageState extends State<HomePage> {
           context.read<UtilsService>().slidingClosed();
         },
       panel: SafeArea(child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container( padding: EdgeInsets.only(top: 5), child: GestureDetector(
             onTap: (){
@@ -70,9 +88,14 @@ class _HomePageState extends State<HomePage> {
                 _pc1.open();
               }
             },
-            child: Icon( context.watch<UtilsService>().iconArrow, size: 35.0)),),
-          Text("En vivo"),
-          Text(this.programName, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+            child: Column(
+              children: [
+                Icon( context.watch<UtilsService>().iconArrow, size: 35.0),
+                Text("En vivo"),
+                Text(this.programName, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),),
+              ],
+            )),),
+          
           ReproductorAudio(),
         ],
       )),

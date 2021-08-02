@@ -36,11 +36,11 @@ class _ReproductorAudioState extends State<ReproductorAudio> {
             }
             final running = snapshot.data ?? false;
             return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
                     width: double.infinity,
-                    padding: EdgeInsets.symmetric( horizontal: MediaQuery.of(context).size.width * 0.2, vertical: MediaQuery.of(context).size.width * 0.05),
+                    padding: EdgeInsets.symmetric( horizontal: MediaQuery.of(context).size.width * 0.2, vertical: 10),
                     child: reproduciendo ? Image.asset("img/animation/AnimacionPlaying.gif") : Image.asset("img/animation/AnimacionStoped.png") ),
                 if (!running) ...[
                   // UI to show when we're not running, i.e. a menu.
@@ -72,15 +72,19 @@ class _ReproductorAudioState extends State<ReproductorAudio> {
                           snapshot.data ?? AudioProcessingState.none;
 
                           if(describeEnum(processingState) != "ready"){
-                            return LinearProgressIndicator();
+                            return LinearProgressIndicator(
+                              minHeight: 5.0,
+                            );
                           } else {
-                            return Container();
+                            return Container(
+                              height: 5.0,
+                            );
                           }
                     },
                   ),
                 ],
                 Container(
-                  padding: EdgeInsets.only(top: 20),
+                  padding: EdgeInsets.only(top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
