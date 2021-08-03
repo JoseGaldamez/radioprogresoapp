@@ -14,7 +14,7 @@ void main() {
     runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => DataNewsPost()),
-        ChangeNotifierProvider(create: (_) => DataNuestraPalabra()),
+        ChangeNotifierProvider(create: (_) => MessagesService()),
         ChangeNotifierProvider(create: (_) => DataNotiNada()),
         ChangeNotifierProvider(create: (_) => UtilsService()),
       ],
