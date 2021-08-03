@@ -5,6 +5,7 @@ import 'package:radioprogresoappoficial/components/newFormat02.dart';
 import 'package:radioprogresoappoficial/components/newFormat03.dart';
 import 'package:radioprogresoappoficial/components/v2/swiperPublicidad.dart';
 import 'package:radioprogresoappoficial/components/v2/videoReproductor.dart';
+import 'package:radioprogresoappoficial/pages/newDetails.dart';
 //import 'package:radioprogresoappoficial/components/notinadaVideo.dart';
 //import 'package:radioprogresoappoficial/components/nuestra_palabra.dart';
 //import 'package:radioprogresoappoficial/services/dataNP.dart';
@@ -102,6 +103,11 @@ class _ListNewsPageState extends State<ListNewsPage> {
 
                             if (index == 2) {
                               return Container(
+                                child: GestureDetector(
+                                  onTap: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>  NewsDetails( context.watch<DataNewsPost>().nuestraPalabra )));
+                                  },
+                                  child: Image.asset("img/np.png"),),
                               );
                             }
 

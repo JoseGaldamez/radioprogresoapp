@@ -13,13 +13,12 @@ class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
   List<NewsModel> _listsNews = [];
   List<NewsModel> get listNews => _listsNews;
 
+  NewsModel npNew;
+  NewsModel get nuestraPalabra => npNew;
+
 
   List<ImageSwiper> _listSwiper = [];
   List<ImageSwiper> get listSwiper => _listSwiper;
-
-
-
-
 
 
 // Obteniendo Noticias desde Firebase
@@ -33,9 +32,13 @@ class DataNewsPost with ChangeNotifier, DiagnosticableTreeMixin {
 
     await query.get().then((posts) => {
       posts.docs.forEach((post) {
-        _listsNews.add(
-          NewsModel(post.data()["title"], post.data()["image"], post.data()["date"], post.data()["content"], post.data()["urlShare"], post.data()["excerpt"])
-        );
+        if (post.data()["category"] == 10) {
+          npNew = new NewsModel(post.data()["title"], post.data()["image"], post.data()["date"], post.data()["content"], post.data()["urlShare"], post.data()["excerpt"]);
+        } else {
+          _listsNews.add(
+            NewsModel(post.data()["title"], post.data()["image"], post.data()["date"], post.data()["content"], post.data()["urlShare"], post.data()["excerpt"])
+          );
+        }
       })
     });
 
