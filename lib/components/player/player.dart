@@ -58,9 +58,9 @@ class MediaState {
 class AudioPlayerHandler extends BaseAudioHandler with SeekHandler {
   static final _item = MediaItem(
     id: 'https://streamingcwsradio30.com:7045/stream?type=http&nocache=102',
-    album: "Science Friday",
-    title: "A Salute To Head-Scratching Science",
-    artist: "Science Friday and WNYC Studios",
+    album: "Radio Progreso",
+    title: "Radio Progreso",
+    artist: "En vivo",
     duration: const Duration(milliseconds: 5739820),
     artUri: Uri.parse(
         'https://radioprogresohn.net/wp-content/uploads/2022/01/logo-radi-progreso.webp'),

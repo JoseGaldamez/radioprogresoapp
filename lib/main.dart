@@ -1,5 +1,12 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+// Firebase
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:radioprogresoappoficial/services/firestore_service.dart';
+import 'firebase_options.dart';
+
+// Components
 import 'package:radioprogresoappoficial/components.dart';
 import 'package:radioprogresoappoficial/components/news/home_news_page.dart';
 import 'package:radioprogresoappoficial/components/notinada/notinada_page.dart';
@@ -9,6 +16,14 @@ import 'package:radioprogresoappoficial/components/player/player_page.dart';
 late AudioHandler _audioHandler;
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Init Firebase service
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Init audio service
   _audioHandler = await AudioService.init(
     builder: () => AudioPlayerHandler(),
     config: const AudioServiceConfig(
@@ -18,7 +33,14 @@ Future<void> main() async {
     ),
   );
 
-  runApp(PrincipalPage());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => FirestoreService()),
+      ],
+      child: PrincipalPage(),
+    ),
+  );
 }
 
 class PrincipalPage extends StatefulWidget {
@@ -38,12 +60,17 @@ class _PrincipalPageState extends State<PrincipalPage> {
   int index = 1;
 
   @override
+  void initState() {
+    super.initState();
+    context.read<FirestoreService>().getNewsList();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Radio Progreso HN',
       theme: ComponentPrincipalPage().appThemeData(),
-      //home: MyHomePage(title: 'Radio Progreso HN'),
       home: Scaffold(
         body: SafeArea(
           child: _pages[index],
