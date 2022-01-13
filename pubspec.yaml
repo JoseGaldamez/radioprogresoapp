@@ -3,7 +3,7 @@ description: Aplicación oficial de Radio Progreso.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 3.0.0+5
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -26,42 +26,26 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-  provider: ^4.3.2+3
-  flutter_html: ^1.0.0
-  http:
-  webview_flutter:
-  flutter_radio:
-  share: ^0.6.5+4
-  audio_session: ^0.0.10
-  just_audio: ^0.6.3
-  flutter_tts: ^0.8.5
   sliding_up_panel: ^2.0.0+1
-  rxdart: "0.25.0"
-  # rxdart: ">= 0.24.1 < 0.26.0"
-  audio_service:
-  firebase_core:
-  cloud_firestore: ^0.16.0
-  cached_network_image: ^2.5.0
-  flutter_swiper:
-  url_launcher: ^6.0.4
 
+  # Player
+  path_provider: ^2.0.1
+  audio_session: ^0.1.6+1
+  just_audio: ^0.9.13
+  flutter_tts: ^3.2.2
+  rxdart: ^0.27.2
+  audio_service:
+    path: ../audio_service/audio_service/
 
 dev_dependencies:
-  flutter_launcher_icons: "^0.8.0"
   flutter_test:
     sdk: flutter
-
-flutter_icons:
-  android: true
-  ios: true
-  image_path: "img/logorp.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
