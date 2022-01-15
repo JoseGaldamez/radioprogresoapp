@@ -20,12 +20,15 @@ class ThirdImageNews extends StatelessWidget {
         child: Container(
           width: double.infinity,
           height: 100,
-          child: CachedNetworkImage(
-            fit: BoxFit.cover,
-            placeholder: (_, link) => Container(
-              child: Image.asset("img/placeholder.gif"),
+          child: Hero(
+            tag: context.watch<FirestoreService>().newsList[index].uid,
+            child: CachedNetworkImage(
+              fit: BoxFit.cover,
+              placeholder: (_, link) => Container(
+                child: Image.asset("img/placeholder.gif"),
+              ),
+              imageUrl: context.watch<FirestoreService>().newsList[index].image,
             ),
-            imageUrl: context.watch<FirestoreService>().newsList[index].image,
           ),
         ),
       ),

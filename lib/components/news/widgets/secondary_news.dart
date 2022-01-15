@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:radioprogresoappoficial/components/news/read_new.dart';
 import 'package:radioprogresoappoficial/services/firestore_service.dart';
 
 class SecondaryNews extends StatelessWidget {
@@ -11,7 +12,12 @@ class SecondaryNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("Ver noticia");
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ReadNew(
+                    noticia:
+                        context.watch<FirestoreService>().newsList[index])));
       },
       child: Container(
         margin: EdgeInsets.only(top: 15),
@@ -70,11 +76,14 @@ class SecondaryNews extends StatelessWidget {
       child: Container(
         height: 100,
         width: MediaQuery.of(context).size.width * 0.3,
-        child: CachedNetworkImage(
-          fit: BoxFit.cover,
-          placeholder: (_, link) =>
-              Container(child: Image.asset("img/placeholder.gif")),
-          imageUrl: context.watch<FirestoreService>().newsList[index].image,
+        child: Hero(
+          tag: context.watch<FirestoreService>().newsList[index].uid,
+          child: CachedNetworkImage(
+            fit: BoxFit.cover,
+            placeholder: (_, link) =>
+                Container(child: Image.asset("img/placeholder.gif")),
+            imageUrl: context.watch<FirestoreService>().newsList[index].image,
+          ),
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 // Firebase
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:radioprogresoappoficial/services/firestore_service.dart';
 import 'firebase_options.dart';
@@ -32,6 +33,11 @@ Future<void> main() async {
       androidNotificationOngoing: true,
     ),
   );
+
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: Colors.blue, // navigation bar color
+    statusBarColor: Colors.pink, // status bar color
+  ));
 
   runApp(
     MultiProvider(
@@ -73,6 +79,12 @@ class _PrincipalPageState extends State<PrincipalPage> {
       title: 'Radio Progreso HN',
       theme: ComponentPrincipalPage().appThemeData(),
       home: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          toolbarHeight: 0,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          backgroundColor: Colors.grey[50],
+        ),
         body: SafeArea(
           child: _pages[index],
         ),

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:radioprogresoappoficial/components/news/read_new.dart';
 import 'package:radioprogresoappoficial/components/news/widgets/video_on_live.dart';
 import 'package:radioprogresoappoficial/services/firestore_service.dart';
 
@@ -16,7 +17,12 @@ class PrincipalNew extends StatelessWidget {
             : VideoOnLive(),
         GestureDetector(
           onTap: () {
-            print("Principal new");
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ReadNew(
+                        noticia:
+                            context.watch<FirestoreService>().newsList[0])));
           },
           child: Container(
             decoration: BoxDecoration(
@@ -71,11 +77,14 @@ class PrincipalNew extends StatelessWidget {
         topLeft: Radius.circular(10),
         topRight: Radius.circular(10),
       ),
-      child: CachedNetworkImage(
-        placeholder: (_, url) => Container(
-          child: Image.asset("img/placeholder.gif"),
+      child: Hero(
+        tag: context.watch<FirestoreService>().newsList[0].uid,
+        child: CachedNetworkImage(
+          placeholder: (_, url) => Container(
+            child: Image.asset("img/placeholder.gif"),
+          ),
+          imageUrl: context.watch<FirestoreService>().newsList[0].image,
         ),
-        imageUrl: context.watch<FirestoreService>().newsList[0].image,
       ),
     );
   }
