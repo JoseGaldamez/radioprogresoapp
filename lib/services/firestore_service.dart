@@ -28,7 +28,7 @@ class FirestoreService with ChangeNotifier {
       return;
     } else {
       _newsList = [];
-      _query.docs.forEach((post) {
+      _query.docs.reversed.forEach((post) {
         if (post.data()["category"] == 71) {
           _newsList.add(NewsModel.fromMap(post.data()));
         }

@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:radioprogresoappoficial/services/firestore_service.dart';
+import 'package:radioprogresoappoficial/services/radio_service.dart';
 import 'firebase_options.dart';
 
 // Components
@@ -43,6 +44,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => FirestoreService()),
+        ChangeNotifierProvider(create: (_) => RadioService()),
       ],
       child: PrincipalPage(),
     ),
@@ -70,6 +72,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
     super.initState();
     context.read<FirestoreService>().getNewsList();
     context.read<FirestoreService>().getVideos();
+    context.read<RadioService>().watchProgram();
   }
 
   @override

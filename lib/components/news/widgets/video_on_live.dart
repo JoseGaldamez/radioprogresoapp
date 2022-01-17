@@ -20,7 +20,9 @@ class _VideoOnLiveState extends State<VideoOnLive> {
     super.initState();
     _controller = YoutubePlayerController(
       initialVideoId: context.read<FirestoreService>().audiovisuales.live,
-      flags: YoutubePlayerFlags(autoPlay: true, mute: false, isLive: true),
+      flags: YoutubePlayerFlags(
+        
+        autoPlay: true, mute: false, isLive: true),
     );
   }
 

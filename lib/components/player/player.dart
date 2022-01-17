@@ -4,6 +4,8 @@ import 'package:audio_service/audio_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:provider/provider.dart';
+import 'package:radioprogresoappoficial/services/radio_service.dart';
 
 class Player extends StatefulWidget {
   final AudioHandler audioHandler;
@@ -27,17 +29,30 @@ class _PlayerState extends State<Player> {
           .distinct(),
       builder: (context, snapshot) {
         final playing = snapshot.data ?? false;
+        //setPlaying(context, playing);
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (playing)
-              _button(Icons.pause, widget.audioHandler.stop)
+              //_button(Icons.pause, widget.audioHandler.stop )
+              _button(Icons.pause, () {
+                widget.audioHandler.stop();
+                context.read<RadioService>().setPlaying(!playing);
+              })
             else
-              _button(Icons.play_arrow, widget.audioHandler.play),
+              //_button(Icons.play_arrow, widget.audioHandler.play),
+              _button(Icons.play_arrow, () {
+                widget.audioHandler.play();
+                context.read<RadioService>().setPlaying(!playing);
+              }),
           ],
         );
       },
     );
+  }
+
+  void setPlaying(BuildContext context, bool state) {
+    context.read<RadioService>().setPlaying(state);
   }
 
   IconButton _button(IconData iconData, VoidCallback onPressed) => IconButton(

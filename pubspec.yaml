@@ -68,6 +68,7 @@ flutter:
     - img/np.png
     - img/animation/AnimacionPlaying.gif
     - img/animation/AnimacionStoping.gif
+    - img/animation/playing.gif
     - img/animation/AnimacionStoped.png
     - img/tu-voz.png
     - img/tu-voz-y-mi-voz.png
