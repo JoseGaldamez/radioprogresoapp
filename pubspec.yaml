@@ -67,12 +67,11 @@ flutter:
   assets:
     - img/logo_principal.png
     - img/logorp.png
+    - img/eric.png
+    - img/notinada.png
     - img/loading.gif
     - img/np.png
-    - img/animation/AnimacionPlaying.gif
-    - img/animation/AnimacionStoping.gif
     - img/animation/playing.gif
-    - img/animation/AnimacionStoped.png
     - img/tu-voz.png
     - img/tu-voz-y-mi-voz.png
     - img/placeholder.gif

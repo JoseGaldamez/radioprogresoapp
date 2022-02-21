@@ -8,19 +8,23 @@ class TittleRadioOnLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.only(bottom: 5),
-            width: 50,
+            padding: const EdgeInsets.only(bottom: 5),
+            width: MediaQuery.of(context).size.width * 0.5,
             child: Image.asset("img/logorp.png"),
           ),
-          Text(
+          const Text(
             "Radio Progreso",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
           ),
-          Text("En vivo")
+          const Text(
+            "En vivo",
+            style: TextStyle(fontSize: 18),
+          )
         ],
       ),
     );

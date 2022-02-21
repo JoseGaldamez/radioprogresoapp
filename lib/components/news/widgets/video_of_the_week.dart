@@ -20,33 +20,47 @@ class _VideoOfTheWeekState extends State<VideoOfTheWeek> {
     super.initState();
     _controller = YoutubePlayerController(
       initialVideoId: context.read<FirestoreService>().audiovisuales.semanal,
-      flags: YoutubePlayerFlags(autoPlay: false, mute: false),
+      flags: const YoutubePlayerFlags(
+          autoPlay: false, mute: false, controlsVisibleAtStart: false),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 5, top: 20),
+      margin: const EdgeInsets.only(bottom: 5, top: 20),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Container(
             alignment: Alignment.center,
-            decoration: BoxDecoration(color: Colors.white),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border:
+                    Border.all(color: Colors.grey.withOpacity(0.5), width: 0.5),
+                color: Colors.white),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  "Vídeo de la semana",
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.bold),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    "Vídeo de la semana",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.blueGrey[600],
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-                Divider(),
+                const Divider(),
                 YoutubePlayer(
                   controller: _controller,
                   showVideoProgressIndicator: true,
+                  progressIndicatorColor: Colors.green,
+                  bottomActions: [
+                    CurrentPosition(),
+                    ProgressBar(isExpanded: true),
+                  ],
                 ),
               ],
             )),

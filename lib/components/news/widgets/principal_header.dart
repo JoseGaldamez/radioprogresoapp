@@ -25,11 +25,11 @@ class PrincipalHeader extends StatelessWidget {
         children: [
           Container(
               padding: EdgeInsets.only(left: 10, right: 10),
-              width: MediaQuery.of(context).size.width * 0.16,
+              width: MediaQuery.of(context).size.width * 0.15,
               child: Image.asset("img/logorp.png")),
           Text(
             "RADIO PROGRESO",
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w900),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
           ),
         ],
       ),

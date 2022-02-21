@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:radioprogresoappoficial/components/news/widgets/share_little_button.dart';
 
 class MetaDataNew extends StatelessWidget {
+  final String urlShared;
   final String date;
-  const MetaDataNew({Key? key, required this.date}) : super(key: key);
+  const MetaDataNew({Key? key, required this.date, required this.urlShared})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +23,15 @@ class MetaDataNew extends StatelessWidget {
                     _formatDate(date),
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
+                  const Text("por Radio Progreso",
+                      style: TextStyle(fontSize: 14, color: Colors.grey)),
                 ],
               )),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.3,
-            child: ShareLittleButton(),
+            child: ShareLittleButton(
+              urlShared: urlShared,
+            ),
           )
         ],
       ),

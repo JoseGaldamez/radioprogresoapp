@@ -3,6 +3,7 @@ import 'package:radioprogresoappoficial/components/news/widgets/principal_header
 import 'package:radioprogresoappoficial/components/options/widgets/about_us.dart';
 import 'package:radioprogresoappoficial/components/options/widgets/administrative_contact.dart';
 import 'package:radioprogresoappoficial/components/options/widgets/contact_options.dart';
+import 'package:radioprogresoappoficial/components/options/widgets/share_app.dart';
 import 'package:radioprogresoappoficial/components/options/widgets/web_sites_launchers.dart';
 
 class OptionsPage extends StatefulWidget {
@@ -26,7 +27,8 @@ class _OptionsPageState extends State<OptionsPage> {
             WebSitesLaunchers(),
             ContactOptions(),
             AdministrativeContact(),
-            AboutUs()
+            AboutUs(),
+            ShareAppButton()
           ],
         ))
       ],

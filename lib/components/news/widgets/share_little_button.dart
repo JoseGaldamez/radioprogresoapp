@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ShareLittleButton extends StatelessWidget {
-  const ShareLittleButton({
-    Key? key,
-  }) : super(key: key);
+  final String urlShared;
+  const ShareLittleButton({Key? key, required this.urlShared})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        Share.share('Esta noticia podría interesarte: ' + urlShared,
+            subject: 'Mira esta nota');
+      },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         decoration: BoxDecoration(

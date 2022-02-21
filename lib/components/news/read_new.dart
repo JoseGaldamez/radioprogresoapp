@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:radioprogresoappoficial/components/news/widgets/metadata_new.dart';
+import 'package:radioprogresoappoficial/components/news/widgets/see_on_browser.dart';
 import 'package:radioprogresoappoficial/components/news/widgets/share_big_button.dart';
 import 'package:radioprogresoappoficial/models/newsModels.dart';
 
@@ -16,14 +17,22 @@ class ReadNew extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _imageReadNew(),
+            noticia.category == 10
+                ? const SizedBox(
+                    height: 30,
+                  )
+                : _imageReadNew(),
             _titleReadNew(),
             MetaDataNew(
               date: noticia.date.toIso8601String(),
+              urlShared: noticia.urlShare,
             ),
             const Divider(),
             _contentHTML(context),
-            ShareBigButton()
+            SeeOnBrowser(urlShared: noticia.urlShare),
+            ShareBigButton(
+              urlShared: noticia.urlShare,
+            )
           ],
         ),
       ),
@@ -53,6 +62,8 @@ class ReadNew extends StatelessWidget {
 
   Map<String, Style> _stylesReadNew(BuildContext context) {
     return {
+      "h1": Style(textAlign: TextAlign.center),
+      "h2": Style(textAlign: TextAlign.center),
       "figcaption": Style(
           fontSize: FontSize.smaller,
           color: Colors.grey,
@@ -89,7 +100,6 @@ class ReadNew extends StatelessWidget {
         alignment: Alignment.topLeft,
       ),
       // text that renders h1 elements will be red
-      "h1": Style(color: Colors.red),
     };
   }
 

@@ -23,7 +23,7 @@ class ComponentPrincipalPage {
       BottomNavigationBarItem(
           icon: Icon(Icons.text_snippet_sharp), label: "Noticias"),
       BottomNavigationBarItem(
-          icon: Icon(Icons.no_accounts), label: "Noti Nada"),
+          icon: Icon(Icons.menu_rounded), label: "Opciones"),
     ];
   }
 }
