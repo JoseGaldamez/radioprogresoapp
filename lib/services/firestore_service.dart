@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //Firebase
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:radioprogresoappoficial/models/audiovisualesModel.dart';
+
 import 'package:radioprogresoappoficial/models/newsModels.dart';
 
 class FirestoreService with ChangeNotifier {
@@ -11,7 +12,10 @@ class FirestoreService with ChangeNotifier {
 
   // Items to share to pages
   List<NewsModel> _newsList = [];
-  List<NewsModel> get newsList => _newsList;
+  List<NewsModel> get newsList => _newsList.reversed.toList();
+
+  late NewsModel _np;
+  NewsModel get np => _np;
 
   // Videos to show
   Audiovisuales _audiovisuales =
@@ -28,11 +32,13 @@ class FirestoreService with ChangeNotifier {
       return;
     } else {
       _newsList = [];
-      _query.docs.reversed.forEach((post) {
+      for (var post in _query.docs) {
         if (post.data()["category"] == 71) {
           _newsList.add(NewsModel.fromMap(post.data()));
+        } else if (post.data()["category"] == 10) {
+          _np = NewsModel.fromMap(post.data());
         }
-      });
+      }
 
       notifyListeners();
     }

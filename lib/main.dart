@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:radioprogresoappoficial/components/options/options_page.dart';
 import 'package:radioprogresoappoficial/services/firestore_service.dart';
 import 'package:radioprogresoappoficial/services/radio_service.dart';
 import 'firebase_options.dart';
@@ -11,7 +12,6 @@ import 'firebase_options.dart';
 // Components
 import 'package:radioprogresoappoficial/components.dart';
 import 'package:radioprogresoappoficial/components/news/home_news_page.dart';
-import 'package:radioprogresoappoficial/components/notinada/notinada_page.dart';
 import 'package:radioprogresoappoficial/components/player/player.dart';
 import 'package:radioprogresoappoficial/components/player/player_page.dart';
 
@@ -62,7 +62,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
   List<Widget> _pages = [
     PlayerPage(audioHandler: _audioHandler),
     HomeListNews(),
-    NotiNadaPage()
+    OptionsPage()
   ];
 
   int index = 1;

@@ -39,6 +39,15 @@ class PrincipalNew extends StatelessWidget {
             ),
           ),
         ),
+        GestureDetector(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ReadNew(
+                          noticia: context.watch<FirestoreService>().np)));
+            },
+            child: Image.asset("img/np.png"))
       ],
     );
   }
