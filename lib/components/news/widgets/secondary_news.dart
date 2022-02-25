@@ -40,10 +40,13 @@ class SecondaryNews extends StatelessWidget {
       padding: EdgeInsets.all(10),
       width: MediaQuery.of(context).size.width * 0.6,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             context.watch<FirestoreService>().newsList[index].title,
             maxLines: 2,
+            textAlign: TextAlign.left,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),

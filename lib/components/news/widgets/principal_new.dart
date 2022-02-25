@@ -70,12 +70,14 @@ class PrincipalNew extends StatelessWidget {
 
   Container _titleNew(BuildContext context) {
     return Container(
+      alignment: Alignment.centerLeft,
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: Text(
         context.watch<FirestoreService>().newsList[0].title,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        textAlign: TextAlign.left,
       ),
     );
   }

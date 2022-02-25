@@ -14,6 +14,31 @@ class ReadNew extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        foregroundColor: Colors.grey,
+        backgroundColor: Colors.white,
+        leading: Container(),
+        leadingWidth: 0,
+        elevation: 0,
+        title: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Row(
+              children: [
+                Container(
+                    child: Icon(
+                  Icons.arrow_back_ios,
+                  size: 20,
+                )),
+                Text(
+                  "Volver",
+                  style: TextStyle(fontSize: 16),
+                )
+              ],
+            )),
+        centerTitle: false,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -21,7 +46,11 @@ class ReadNew extends StatelessWidget {
                 ? const SizedBox(
                     height: 30,
                   )
-                : _imageReadNew(),
+                : Stack(
+                    children: [
+                      _imageReadNew(),
+                    ],
+                  ),
             _titleReadNew(),
             MetaDataNew(
               date: noticia.date.toIso8601String(),
@@ -105,9 +134,11 @@ class ReadNew extends StatelessWidget {
 
   Container _titleReadNew() {
     return Container(
+      alignment: Alignment.centerLeft,
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       child: Text(
         noticia.title,
+        textAlign: TextAlign.left,
         style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
       ),
     );
