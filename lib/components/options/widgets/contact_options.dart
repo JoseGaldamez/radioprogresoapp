@@ -31,8 +31,8 @@ class ContactOptions extends StatelessWidget {
             children: [
               ListTile(
                 onTap: () async {
-                  if (!await launch(
-                      "https://api.whatsapp.com/send?phone=50433913481&text=Hola%20Radio%20Progreso")) {
+                  if (!await launchUrl(Uri.parse(
+                      "https://api.whatsapp.com/send?phone=50433913481&text=Hola%20Radio%20Progreso"))) {
                     throw 'Could not launch Whatsapp';
                   }
                 },
@@ -44,7 +44,7 @@ class ContactOptions extends StatelessWidget {
               ),
               ListTile(
                 onTap: () async {
-                  if (!await launch("tel:+50426479433")) {
+                  if (!await launchUrl(Uri.parse("tel:+50426479433"))) {
                     throw 'Could not launch Call';
                   }
                 },
@@ -57,8 +57,8 @@ class ContactOptions extends StatelessWidget {
               ),
               ListTile(
                 onTap: () async {
-                  if (!await launch(
-                      "mailto:multimedia@radioprogreso.net?subject=App:%20Hola%20amigos%20de%20Radio%20Progreso")) {
+                  if (!await launchUrl( Uri.parse(
+                      "mailto:multimedia@radioprogreso.net?subject=App:%20Hola%20amigos%20de%20Radio%20Progreso"))) {
                     throw 'Could not launch Email';
                   }
                 },

@@ -31,8 +31,8 @@ class AdministrativeContact extends StatelessWidget {
             children: [
               ListTile(
                 onTap: () async {
-                  if (!await launch(
-                      "https://api.whatsapp.com/send?phone=50431776477&text=Hola%20Mercadeo")) {
+                  if (!await launchUrl(Uri.parse(
+                      "https://api.whatsapp.com/send?phone=50431776477&text=Hola%20Mercadeo"))) {
                     throw 'Could not launch Whatsapp';
                   }
                 },
@@ -44,7 +44,7 @@ class AdministrativeContact extends StatelessWidget {
               ),
               ListTile(
                 onTap: () async {
-                  if (!await launch("tel:+50431776477")) {
+                  if (!await launchUrl(Uri.parse("tel:+50431776477"))) {
                     throw 'Could not launch Whatsapp';
                   }
                 },

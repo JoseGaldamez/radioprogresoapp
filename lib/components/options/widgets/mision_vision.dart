@@ -56,7 +56,7 @@ class MisionVision extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(primary: Colors.green[600]),
         onPressed: () async {
-          if (!await launch("https://radioprogresohn.net/quienes-somos/")) {
+          if (!await launchUrl(Uri.parse( "https://radioprogresohn.net/quienes-somos/"))) {
             throw 'Could not launch "https://radioprogresohn.net/quienes-somos/"';
           }
         },

@@ -5,6 +5,8 @@ import 'package:radioprogresoappoficial/components/news/widgets/secondary_news.d
 import 'package:radioprogresoappoficial/components/news/widgets/thirdNews.dart';
 import 'package:radioprogresoappoficial/components/news/widgets/video_of_the_week.dart';
 import 'package:radioprogresoappoficial/services/firestore_service.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:radioprogresoappoficial/utils/toast.dart';
 
 class ListOfNews extends StatelessWidget {
   const ListOfNews({
@@ -15,6 +17,17 @@ class ListOfNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
+        showToast("Actualizando noticias...");
+        
+        Fluttertoast.showToast(
+            msg: "Actualizando noticias...",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
+
         _getNewsAgain(context);
       },
       child: ListView(

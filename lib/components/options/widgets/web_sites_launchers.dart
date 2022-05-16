@@ -31,7 +31,8 @@ class WebSitesLaunchers extends StatelessWidget {
             children: [
               ListTile(
                 onTap: () async {
-                  if (!await launch("https://www.radioprogresohn.net")) {
+                  if (!await launchUrl(
+                      Uri.parse("https://www.radioprogresohn.net"))) {
                     throw 'Could not launch "https://www.radioprogresohn.net"';
                   }
                 },
@@ -50,7 +51,7 @@ class WebSitesLaunchers extends StatelessWidget {
               ),
               ListTile(
                 onTap: () async {
-                  if (!await launch("https://www.eric-sj.org")) {
+                  if (!await launchUrl(Uri.parse("https://www.eric-sj.org"))) {
                     throw 'Could not launch https://www.eric-sj.org';
                   }
                 },
@@ -66,7 +67,8 @@ class WebSitesLaunchers extends StatelessWidget {
               ),
               ListTile(
                 onTap: () async {
-                  if (!await launch("https://notinada.radioprogresohn.net")) {
+                  if (!await launchUrl(
+                      Uri.parse("https://notinada.radioprogresohn.net"))) {
                     throw 'Could not launch https://notinada.radioprogresohn.net';
                   }
                 },

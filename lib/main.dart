@@ -72,7 +72,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
     super.initState();
     context.read<FirestoreService>().getNewsList();
     context.read<FirestoreService>().getVideos();
-    //context.read<RadioService>().watchProgram();
+    context.read<RadioService>().watchProgram();
   }
 
   @override

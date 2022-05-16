@@ -32,6 +32,7 @@ dependencies:
   flutter_html: ^2.2.1
   url_launcher: ^6.0.18
   share_plus: ^3.0.4
+  fluttertoast: ^8.0.9
 
   # Manager state
   provider: ^6.0.2
@@ -42,12 +43,15 @@ dependencies:
   just_audio: ^0.9.13
   flutter_tts: ^3.2.2
   rxdart: ^0.27.2
-  audio_service:
-    path: ../audio_service/audio_service/
+  audio_service: ^0.18.4
+  # audio_service:
+    # path: ../audio_service/audio_service/
 
   # Firebase
   firebase_core: ^1.11.0
   cloud_firestore: ^3.1.6
+
+  # Toast
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +76,7 @@ flutter:
     - img/loading.gif
     - img/np.png
     - img/animation/playing.gif
+    - img/animation/enviado.gif
     - img/tu-voz.png
     - img/tu-voz-y-mi-voz.png
     - img/placeholder.gif

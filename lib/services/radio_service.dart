@@ -7,6 +7,9 @@ class RadioService with ChangeNotifier {
   // Intances
   final _firestore = FirebaseFirestore.instance;
 
+  String _currentProgramID = '';
+  String get currentProgramID => _currentProgramID;
+
   // Items to share to pages
   String _currentProgram = "";
   String get currentProgram => _currentProgram;
@@ -19,10 +22,10 @@ class RadioService with ChangeNotifier {
   // Get news from Firebase
   Future<void>? watchProgram() async {
     if (_watchCurrentProgram == null) {
-      print("De nuevo");
       _watchCurrentProgram =
           _firestore.collection("radio").snapshots().listen((event) {
         _currentProgram = event.docs[0].data()["name"];
+        _currentProgramID = event.docs[0].data()["idprogram"];
         notifyListeners();
       });
     }

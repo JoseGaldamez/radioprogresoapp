@@ -10,7 +10,7 @@ class SeeOnBrowser extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        if (!await launch(urlShared)) {
+        if (!await launchUrl(Uri.parse(urlShared))) {
           throw 'Could not launch $urlShared';
         }
       },
