@@ -41,23 +41,23 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDv0JeJpfFSCP7x3THvKdO8GHiucufs0IQ',
-    appId: '1:970362926725:android:b733405f0b816037b6dbec',
-    messagingSenderId: '970362926725',
-    projectId: 'radioprogreso-a03a6',
-    databaseURL: 'https://radioprogreso-a03a6.firebaseio.com',
-    storageBucket: 'radioprogreso-a03a6.appspot.com',
+    apiKey: '***',
+    appId: '***',
+    messagingSenderId: '000',
+    projectId: '***',
+    databaseURL: '***',
+    storageBucket: '***',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCtGTcIpCdd0uJC__aKkvWu5oQWFZKh9fI',
-    appId: '1:970362926725:ios:ed23b19854bf9b08b6dbec',
-    messagingSenderId: '970362926725',
-    projectId: 'radioprogreso-a03a6',
-    databaseURL: 'https://radioprogreso-a03a6.firebaseio.com',
-    storageBucket: 'radioprogreso-a03a6.appspot.com',
-    androidClientId: '970362926725-1a6o1oquvd3o8npkjb72mopmslitgiev.apps.googleusercontent.com',
-    iosClientId: '970362926725-0bu3ji3rms00pkqc6f9omur4n22381c9.apps.googleusercontent.com',
-    iosBundleId: 'net.radioprogresohn.appoficial',
+    apiKey: '***',
+    appId: '***',
+    messagingSenderId: '***',
+    projectId: '***',
+    databaseURL: '***',
+    storageBucket: '***',
+    androidClientId: '***',
+    iosClientId: '***',
+    iosBundleId: '***',
   );
 }
